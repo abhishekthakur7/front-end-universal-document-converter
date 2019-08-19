@@ -2,7 +2,7 @@ import React from 'react';
 import './modal-wrapper.styles.scss';
 
 import CustomButton from '../custom-button/custom-button.component';
-import UploadFileWrapper from '../upload-file/upload-file.component';
+import Upload from '../upload/upload.component';
 import ReactModal from 'react-modal';
 
 ReactModal.setAppElement('#root');
@@ -16,7 +16,9 @@ const ModalWrapper = ({ showModal, handleCloseModal }) => (
            overlayClassName="Overlay"
         >
         <CustomButton onClick={ handleCloseModal } className="closeButton">Close</CustomButton>
-        <UploadFileWrapper />
+        <div className="Card">
+            <Upload />
+        </div>
     </ReactModal>
 );
 
