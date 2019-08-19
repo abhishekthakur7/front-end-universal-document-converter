@@ -1,18 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import './category.styles.scss';
+import ModalWrapper from '../modal-wrapper/modal-wrapper.component';
 
-const Category = ({ extensionType, description, fontAwesomeClass }) => (
-    <li className="one_quarter">
-        
-        <article>
-            <Link to="/">
-                <i className={fontAwesomeClass}></i>
-            </Link>
-            <h6 className="heading">{ extensionType }</h6>
-            <p>{ description }</p>
-        </article>
-        
-    </li>
-);
+class Category extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            showModal: false
+        };
+    }
+
+    handleOpenModal = () => (
+        this.setState({ showModal: true })
+    )
+
+    render() {
+        const { extensionType, description, fontAwesomeClass } = this.props;
+        return (
+            <li className="one_quarter">
+
+                <article>
+                    <i className={`${fontAwesomeClass} clickable`} onClick={this.handleOpenModal}></i>
+                    <h6 className="heading">{extensionType}</h6>
+                    <p>{description}</p>
+                </article>
+                <ModalWrapper showModal={this.state.showModal} handleCloseModal={() => (
+                    this.setState({ showModal: false }))} />
+            </li>
+        )
+    }
+
+
+}
 
 export default Category;

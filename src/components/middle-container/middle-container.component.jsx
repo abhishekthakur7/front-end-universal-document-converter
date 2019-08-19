@@ -1,14 +1,14 @@
 import React from 'react';
 
-import BackGroundImage from '../../static/images/background/01.png';
+import './middle-container.styles.scss';
 
 const MiddleContainer = () => (
-    <div className="bgded overlay" style={{ backgroundImage: `url(${BackGroundImage})` }}>
+    <div className="bgded overlay image">
         <div id="pageintro" className="hoc clear">
             <article>
                 <h3 className="heading">Universal document converter</h3>
                 <p>The only converter you ever need</p>
-                <footer><a className="btn" href="#">Start Converting</a></footer>
+                <footer><a href='#files' className='button'><span>START CONVERTING</span></a></footer>
             </article>
         </div>
     </div>

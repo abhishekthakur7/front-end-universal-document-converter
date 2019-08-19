@@ -43,12 +43,12 @@ const getButtonStyles = props => {
 };
 
 export const CustomButtonContainer = styled.button`
-  min-width: 165px;
+  min-width: 120px;
   width: auto;
   height: 50px;
   letter-spacing: 0.5px;
-  line-height: 50px;
-  padding: 0 35px 0 35px;
+  line-height: 40px;  
+  padding: 0 25px 0 25px;
   font-size: 15px;
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
@@ -56,5 +56,13 @@ export const CustomButtonContainer = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
+  @media (max-width: 1020px) {
+    min-width: 0px;
+    height: 30px;
+    width: auto;
+    line-height: 0;
+    font-size: 12px;
+    padding: 0 10px 0 10px;
+  };
   ${getButtonStyles}
 `;

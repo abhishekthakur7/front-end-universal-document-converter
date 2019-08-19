@@ -15,7 +15,7 @@ class Categories extends React.Component{
     render() {
         const { categories } = this.state;
         return (
-            <div className="wrapper row3">
+            <div className="wrapper row3" id="files">
                 <main className="hoc container clear">
                     <section id="introblocks">
                         <ul className="nospace group btmspace-80 elements elements-four">
