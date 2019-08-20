@@ -10,12 +10,12 @@ class Upload extends Component {
       files: [],
       uploading: false,
       uploadProgress: {},
-      successfullUploaded: false
+      isFileSuccessfullyUploaded: false,
+      isFileConverted: false
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
     this.uploadFiles = this.uploadFiles.bind(this);
-    this.sendRequest = this.sendRequest.bind(this);
     this.renderActions = this.renderActions.bind(this);
   }
 
@@ -27,61 +27,63 @@ class Upload extends Component {
 
   async uploadFiles() {
     this.setState({ uploadProgress: {}, uploading: true });
-    const promises = [];
-    this.state.files.forEach(file => {
-      promises.push(this.sendRequest(file));
-    });
+    let file = this.state.files[0];
     try {
-      console.log('bfeore uploaded: ', this.state.successfullUploaded)
-      await Promise.all(promises);
-      this.setState({ successfullUploaded: true, uploading: false }, ()=> console.log('uploaded: ', this.state.successfullUploaded));
+      let x = await new Promise((resolve, reject) => {
+        const req = new XMLHttpRequest();
+
+        //Start: Track upload progress
+        req.upload.onprogress = (event) => {
+          if (event.lengthComputable) {
+            const copy = { ...this.state.uploadProgress };
+            copy[file.name] = {
+              state: "pending",
+              percentage: (event.loaded / event.total) * 100
+            };
+            this.setState({ uploadProgress: copy });
+          }
+        }
+
+        req.upload.onload = (event) => {
+          const copy = { ...this.state.uploadProgress };
+          copy[file.name] = { state: "done", percentage: 100 };
+          this.setState({ uploadProgress: copy, isFileSuccessfullyUploaded: true, uploading: false });
+        };
+
+        req.upload.onerror = event => {
+          const copy = { ...this.state.uploadProgress };
+          copy[file.name] = { state: "error", percentage: 0 };
+          this.setState({ uploadProgress: copy, isFileConverted: false, isFileSuccessfullyUploaded: false, uploading: false });
+          reject(req.response);
+        };
+        //End: Track upload progress
+
+        const formData = new FormData();
+        formData.append("file", file, file.name);
+        req.open("POST", "http://localhost:5000/convertPdfFile");
+        req.setRequestHeader("fileType", "html")
+        req.send(formData);
+        req.onload = () => {
+          if (req.status === 200) {
+            this.setState({ isFileConverted: true, uploading: false });
+            resolve(req.response);
+          }
+        }
+        // Handle network errors
+        req.onerror = function () {
+          reject(Error("Network Error"));
+        };
+      });
+      console.log('response is: ' + x);
     } catch (e) {
       // Not Production ready! Do some error handling here instead...
-      this.setState({ successfullUploaded: true, uploading: false });
+      this.setState({ isFileSuccessfullyUploaded: false, isFileConverted: false, uploading: false });
     }
-  }
-
-  sendRequest(file) {
-    return new Promise((resolve, reject) => {
-      const req = new XMLHttpRequest();
-
-      req.upload.addEventListener("progress", event => {
-        if (event.lengthComputable) {
-          const copy = { ...this.state.uploadProgress };
-          copy[file.name] = {
-            state: "pending",
-            percentage: (event.loaded / event.total) * 100
-          };
-          this.setState({ uploadProgress: copy });
-        }
-      });
-
-      req.upload.addEventListener("load", event => {
-        const copy = { ...this.state.uploadProgress };
-        copy[file.name] = { state: "done", percentage: 100 };
-        this.setState({ uploadProgress: copy });
-        resolve(req.response);
-      });
-
-      req.upload.addEventListener("error", event => {
-        const copy = { ...this.state.uploadProgress };
-        copy[file.name] = { state: "error", percentage: 0 };
-        this.setState({ uploadProgress: copy });
-        reject(req.response);
-      });
-
-      const formData = new FormData();
-      formData.append("file", file, file.name);
-
-      req.open("POST", "http://localhost:5000/convertPdfFile");
-      req.setRequestHeader("fileType", "html")
-      req.send(formData);
-    });
   }
 
   renderProgress(file) {
     const uploadProgress = this.state.uploadProgress[file.name];
-    if (this.state.uploading || this.state.successfullUploaded) {
+    if (this.state.uploading || this.state.isFileSuccessfullyUploaded) {
       return (
         <div className="ProgressWrapper">
           <Progress progress={uploadProgress ? uploadProgress.percentage : 0} />
@@ -100,11 +102,11 @@ class Upload extends Component {
   }
 
   renderActions() {
-    if (this.state.successfullUploaded) {
+    if (this.state.isFileSuccessfullyUploaded) {
       return (
         <button
           onClick={() =>
-            this.setState({ files: [], successfullUploaded: false })
+            this.setState({ files: [], isFileSuccessfullyUploaded: false })
           }
         >
           Clear
@@ -130,7 +132,7 @@ class Upload extends Component {
           <div>
             <Dropzone
               onFilesAdded={this.onFilesAdded}
-              disabled={this.state.uploading || this.state.successfullUploaded}
+              disabled={this.state.uploading || this.state.isFileSuccessfullyUploaded}
             />
           </div>
           <div className="Files">
