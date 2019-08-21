@@ -22,10 +22,12 @@
   }
 
   .Card {
-    margin-left: 25%;
+    position: absolute;
+    bottom: 40px;
+    margin-left: 20%;
     background-color: white;
     padding: 32px;
-    width: 50%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: flex-start;

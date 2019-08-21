@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; //import localStorage, we can use sessionStorage as well if needed
 
 import userReducer from './user/user.reducer';
+import CategoriesReducer from './categories/categories.reducer';
 
 const persistConfig = {
   key: 'root',
@@ -11,7 +12,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  user: userReducer
+  user: userReducer,
+  categories: CategoriesReducer
 });
 
 export default persistReducer(persistConfig, rootReducer); //return root reducer with enabled localStorage

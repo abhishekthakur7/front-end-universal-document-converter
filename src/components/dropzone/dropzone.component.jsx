@@ -26,6 +26,7 @@ class Dropzone extends Component {
       const array = this.fileListToArray(files);
       this.props.onFilesAdded(array);
     }
+    evt.target.value = null; //reset file input value so that onChange can work as expected
   }
 
   onDragOver(event) {
