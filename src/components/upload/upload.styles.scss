@@ -28,13 +28,13 @@
   width: 100%;
   display: flex;
   flex: 1;
-  align-items: flex-start;
   flex-direction: column;
   margin-top: 32px;
 }
 
 .Title {
-  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
   color: #555;
 }
 
@@ -67,32 +67,65 @@
   align-items: center;
 }
 
-button {
+@mixin button-styles {
   font-family: "Roboto medium", sans-serif;
   font-size: 14px;
-  display: inline-block;
-  height: 36px;
-  min-width: 88px;
   padding: 6px 16px;
   line-height: 1.42857143;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  outline: 0;
+  height: 36px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+select {
+  @include button-styles;
+  background: #192610;
+}
+
+button {
+  @include button-styles;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: inline-block;
+  min-width: 88px;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 0;
-  border-radius: 2px;
   background: rgba(103, 58, 183, 1);
-  color: #fff;
-  outline: 0;
 }
 
 button:disabled {
   background: rgb(189, 189, 189);
   cursor: default;
+}
+
+@media (max-width: 900px) {
+  .buttons{
+    flex-direction: column;
+  }
+  button{
+    padding: 6px 38px;
+  }
+  .uploadButton {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+  }
+  .selectDropdown {
+    display: flex;
+    justify-content: center;
+  }
 }

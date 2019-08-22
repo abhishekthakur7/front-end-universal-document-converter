@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Dropzone from "../dropzone/dropzone.component";
 import './upload.styles.scss';
 import Progress from "../progress/progress.component";
-import SelectDropdown from '../select-dropdown/select-dropdown.component';
+import Spinner from "../../pages/spinner/spinner.component";
 
 class Upload extends Component {
   constructor(props) {
@@ -12,13 +12,15 @@ class Upload extends Component {
       uploading: false,
       uploadProgress: {},
       isFileSuccessfullyUploaded: false,
-      isFileConverted: false
+      isFileConverted: false,
+      fileTypeToConvert: ''
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
     this.uploadFiles = this.uploadFiles.bind(this);
     this.sendRequest = this.sendRequest.bind(this);
     this.renderActions = this.renderActions.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   onFilesAdded(files) {
@@ -27,11 +29,27 @@ class Upload extends Component {
     }), () => console.log('file is: ' + files));
   }
 
-  async uploadFiles() {
+  async uploadFiles(event) {
+    const { fileTypeToConvert } = this.state;
+    if (!fileTypeToConvert) {
+      alert('Please select file type to convert.')
+      return;
+    }
+
+    if (event.target.files) {
+      this.onFilesAdded(event.target.files);
+    }
+
+    const filesSelected = this.state.files;
+    console.log(filesSelected);
+    if (typeof filesSelected === 'undefined' || !filesSelected.length > 0) {
+      alert('Please select file to convert first.')
+      return;
+    }
     this.setState({ uploadProgress: {}, isFileConverted: false, uploading: true });
     const promises = [];
     this.state.files.forEach(file => {
-      promises.push(this.sendRequest(file));
+      promises.push(this.sendRequest(file, fileTypeToConvert));
     });
     try {
       let response = await Promise.all(promises);
@@ -43,7 +61,7 @@ class Upload extends Component {
     }
   }
 
-  sendRequest(file) {
+  sendRequest(file, fileTypeToConvert) {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
@@ -77,7 +95,7 @@ class Upload extends Component {
       formData.append("file", file, file.name);
 
       req.open("POST", "http://localhost:5000/convertPdfFile");
-      req.setRequestHeader("fileType", "image")
+      req.setRequestHeader("fileType", fileTypeToConvert)
       req.send(formData);
       req.onload = () => {
         if (req.status === 200) {
@@ -109,6 +127,10 @@ class Upload extends Component {
     }
   }
 
+  handleSelectChange(event) {
+    this.setState({ fileTypeToConvert: event.target.value })
+  }
+
   renderActions() {
     if (this.state.isFileConverted) {
       return (
@@ -122,43 +144,62 @@ class Upload extends Component {
       );
     } else {
       return (
-        <div style= { {'display': 'flex' } }>
-          <button
-            disabled={this.state.files.length < 0 || this.state.uploading}
-            onClick={this.uploadFiles}
-          >
-            Upload
-        </button>
-        <SelectDropdown />
+        <div className='buttons'>
+          <div className='uploadButton'>
+            <button
+              disabled={this.state.files.length < 0 || this.state.uploading}
+              onClick={this.uploadFiles}
+            >
+              Convert
+            </button>
+          </div>
+          <div className='selectDropdown'>
+            <select value={this.state.fileTypeToConvert} onChange={this.handleSelectChange}>
+              <option value="">Convert To</option>
+              <option value="html">HTML</option>
+              <option value="image">Image</option>
+              <option value="text">Text</option>
+              <option value="docx">Docx</option>
+              <option value="ppt">PPT</option>
+            </select>
+          </div>
         </div>
-
       );
     }
   }
 
   render() {
-    return (
-      <div className="Upload">
+    let { uploading, isFileConverted, isFileSuccessfullyUploaded } = this.state;
+    let component;
+    if ((!isFileConverted && uploading) || (!isFileConverted && isFileSuccessfullyUploaded && !uploading)) {
+      console.log(`uploading: ${uploading}, isFileConverted: ${isFileConverted}`);
+      component = <Spinner message='Converting Files'/>
+    } else if ((isFileConverted && !uploading && isFileSuccessfullyUploaded) || !(isFileConverted && uploading && isFileSuccessfullyUploaded)) {
+      component = <div>
         <span className="Title">Upload Files</span>
         <div className="Content">
-          <div>
-            <Dropzone
-              onFilesAdded={this.onFilesAdded}
-              disabled={this.state.uploading || this.state.isFileSuccessfullyUploaded}
-            />
-          </div>
-          <div className="Files">
-            {this.state.files.map(file => {
-              return (
-                <div key={file.name} className="Row">
-                  <span className="Filename">{file.name}</span>
-                  {this.renderProgress(file)}
-                </div>
-              );
-            })}
-          </div>
+        <div>
+          <Dropzone
+            onFilesAdded={this.onFilesAdded}
+            disabled={this.state.uploading || this.state.isFileSuccessfullyUploaded}
+          />
         </div>
-        <div className="Actions">{this.renderActions()}</div>
+        <div className="Files">
+          {this.state.files.map(file => {
+            return (
+              <div key={file.name} className="Row">
+                <span className="Filename">{file.name}</span>
+                {this.renderProgress(file)}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+        <div className="Actions">{this.renderActions()}</div></div>
+    }
+    return (
+      <div className="Upload">
+        {component}
       </div>
     );
   }
