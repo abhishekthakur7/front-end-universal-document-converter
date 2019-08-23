@@ -8,6 +8,7 @@ import CopyrightFooter from './pages/copyright-footer/copyright-footer.component
 import Notfound from './pages/not-found/not-found.component';
 import HomePage from './pages/homepage/homepage.component';
 import SignInSignUp from './pages/sign-in-sign-up/sign-in-sign-in.component';
+import ContactUs from './pages/contact-us/contact-us.component';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -24,7 +25,7 @@ class App extends React.Component {
         <NavBar />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/contact' component={HomePage} />
+          <Route exact path='/contact' component={ContactUs} />
           <Route
             exact
             path='/signin'

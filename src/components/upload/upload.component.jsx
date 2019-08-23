@@ -3,6 +3,7 @@ import Dropzone from "../dropzone/dropzone.component";
 import './upload.styles.scss';
 import Progress from "../progress/progress.component";
 import Spinner from "../../pages/spinner/spinner.component";
+import Download from "../download/download.component";
 
 class Upload extends Component {
   constructor(props) {
@@ -113,7 +114,7 @@ class Upload extends Component {
         <div className="ProgressWrapper">
           <Progress progress={uploadProgress ? uploadProgress.percentage : 0} />
           <span style={{ 'display': uploadProgress && uploadProgress.state === "done" ? 'block ' : 'none' }}>Upload done</span>
-          {/* <img
+          <img
             className="CheckIcon"
             alt="done"
             src="baseline-check_circle_outline-24px.svg"
@@ -121,7 +122,7 @@ class Upload extends Component {
               opacity:
                 uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
             }}
-          /> */}
+          />
         </div>
       );
     }
@@ -173,29 +174,38 @@ class Upload extends Component {
     let component;
     if ((!isFileConverted && uploading) || (!isFileConverted && isFileSuccessfullyUploaded && !uploading)) {
       console.log(`uploading: ${uploading}, isFileConverted: ${isFileConverted}`);
-      component = <Spinner message='Converting Files'/>
+      if (!uploading && isFileSuccessfullyUploaded) {
+        component = <Spinner message='Converting...' />
+      } else {
+        component = <Spinner message='Uploading...' />
+      }
     } else if ((isFileConverted && !uploading && isFileSuccessfullyUploaded) || !(isFileConverted && uploading && isFileSuccessfullyUploaded)) {
-      component = <div>
-        <span className="Title">Upload Files</span>
-        <div className="Content">
-        <div>
-          <Dropzone
-            onFilesAdded={this.onFilesAdded}
-            disabled={this.state.uploading || this.state.isFileSuccessfullyUploaded}
-          />
+      if (isFileConverted) {
+        component = <Download />
+      } else {
+        component = <div>
+          <span className="Title">Upload Files</span>
+          <div className="Content">
+            <div>
+              <Dropzone
+                onFilesAdded={this.onFilesAdded}
+                disabled={this.state.uploading || this.state.isFileSuccessfullyUploaded}
+              />
+            </div>
+            <div className="Files">
+              {this.state.files.map(file => {
+                return (
+                  <div key={file.name} className="Row">
+                    <span className="Filename">{file.name}</span>
+                    {/* {this.renderProgress(file)} */}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="Actions">{this.renderActions()}</div>
         </div>
-        <div className="Files">
-          {this.state.files.map(file => {
-            return (
-              <div key={file.name} className="Row">
-                <span className="Filename">{file.name}</span>
-                {this.renderProgress(file)}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-        <div className="Actions">{this.renderActions()}</div></div>
+      }
     }
     return (
       <div className="Upload">
