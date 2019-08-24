@@ -13,14 +13,6 @@ const NavBar = ({currentUser, signOutStart}) => (
     <nav id="mainav" className="fl_right">
       <ul className="clear">
         <li className="links"><NavLink activeClassName="active" exact to="/">Home</NavLink></li>
-        <li className="links"><span className="drop">Pages</span>
-          <ul>
-            <li><a href="pages/gallery.html">Gallery</a></li>
-            <li><a href="pages/full-width.html">Full Width</a></li>
-            <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
-            <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
-          </ul>
-        </li>
         <li className="links"><NavLink activeClassName="active" exact to="/contact">Contact Us</NavLink></li>
         <li className="links"><NavLink activeClassName="active" exact to="/signin" onClick={signOutStart}>
           {

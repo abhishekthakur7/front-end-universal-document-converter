@@ -6,7 +6,7 @@ const MiddleContainer = () => (
     <div className="bgded overlay image">
         <div id="pageintro" className="hoc clear">
             <article>
-                <h3 className="heading">Universal document converter</h3>
+                <h3 className="mainHeading">Universal document converter</h3>
                 <p>The only converter you ever need</p>
                 <footer><a href='#files' className='button'><span>START CONVERTING</span></a></footer>
             </article>

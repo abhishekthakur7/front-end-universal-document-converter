@@ -27,7 +27,7 @@ class Category extends React.Component {
 
                 <article>
                     <i className={`${fontAwesomeClass} clickable`} onClick={this.handleOpenModal}></i>
-                    <h6 className="heading">{extensionType}</h6>
+                    <h6 className="categoryHeading">{extensionType}</h6>
                     <p>{description}</p>
                 </article>
                 <ModalWrapper showModal={this.state.showModal}  handleCloseModal = {this.handleCloseModal}>

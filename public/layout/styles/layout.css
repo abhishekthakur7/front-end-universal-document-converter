@@ -7,8 +7,6 @@
 
 /* Header
 --------------------------------------------------------------------------------------------------------------- */
-#header{}
-
 #header #logo{margin:22px 0 0 0;}
 
 
@@ -73,26 +71,6 @@
 	justify-content: space-evenly;
 }
 
-/* Footer
---------------------------------------------------------------------------------------------------------------- */
-#footer{padding:80px 0;}
-
-#footer .heading{margin-bottom:50px; font-size:1.2rem;}
-#footer .logoname{margin-bottom:50px;}
-#footer p + .faico{margin-top:30px;}
-
-#footer .linklist li{display:block; margin-bottom:15px; padding:0 0 15px 0; border-bottom:1px solid;}
-#footer .linklist li:last-child{margin:0; padding:0; border:none;}
-#footer .linklist li::before, #footer .linklist li::after{display:table; content:"";}
-#footer .linklist li, #footer .linklist li::after{clear:both;}
-
-#footer .latestimg{}
-#footer .latestimg > li{display:inline-block; float:left; width:30%; margin:0 0 5% 5%;}
-#footer .latestimg > li:nth-last-child(-n+3){margin-bottom:0;}/* Removes bottom margin from the last three items - margin is restored in the media queries when items stack */
-#footer .latestimg > li:nth-child(3n+1){margin-left:0; clear:left;}/* Removes the need to add class="first" */
-#footer .latestimg > li img{width:100%;}/* Force the image to resize to take the full space - may have to be changed for tablets, depends on personal preference */
-#footer .latestimg > li a.imgover{display:block;}
-
 
 /* Copyright
 --------------------------------------------------------------------------------------------------------------- */
@@ -116,7 +94,6 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 #mainav .drop::after, #mainav li li .drop::after, #breadcrumb li a::after, .sidebar nav a::after{position:absolute; font-family:"Font Awesome\ 5 Free"; font-weight:900; font-size:10px; line-height:10px;}
 
 /* Top Navigation */
-#mainav{}
 #mainav ul{text-transform:uppercase;}
 #mainav ul ul{position:absolute; width:180px; text-transform:none; z-index:9999;}
 #mainav ul ul ul{left:180px; top:0;}
@@ -125,11 +102,7 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 #mainav li li{width:100%; margin:0;}
 #mainav li a{display:block; padding:30px 0}
 #mainav li li a{border:solid; border-width:0 0 1px 0;}
-#mainav .drop{padding-left:15px;}
 #mainav li li a, #mainav li li .drop{display:block; margin:0; padding:10px 15px;}
-#mainav .drop::after, #mainav li li .drop::after{content:"\f0d7";}
-#mainav .drop::after{top:5px; left:5px;}
-#mainav li li .drop::after{top:15px; left:5px;}
 #mainav ul ul{visibility:hidden; opacity:0;}
 #mainav ul li:hover > ul{visibility:visible; opacity:1;}
 
@@ -148,82 +121,14 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 #breadcrumb li:last-child a::after{display:none;}
 #breadcrumb .heading{margin:0; font-size:2rem;}
 
-/* Back to Top */
-#backtotop{z-index:999; display:inline-block; position:fixed; visibility:hidden; bottom:20px; right:20px; width:36px; height:36px; line-height:36px; font-size:16px; text-align:center; opacity:.2;}
-#backtotop i{display:block; width:100%; height:100%; line-height:inherit;}
-#backtotop.visible{visibility:visible; opacity:.5;}
-#backtotop:hover{opacity:1;}
-
-
-/* Tables
---------------------------------------------------------------------------------------------------------------- */
-table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
-table, th{table-layout:auto;}
-table{width:100%; margin-bottom:15px;}
-th, td{padding:5px 8px;}
-td{border-width:0 1px;}
-
-
-/* Font Awesome Social Icons
---------------------------------------------------------------------------------------------------------------- */
-.faico{margin:0; padding:0; list-style:none;}
-.faico li{display:inline-block; margin:8px 5px 0 0; padding:0; line-height:normal;}
-.faico li:last-child{margin-right:0;}
-.faico a{display:inline-block; width:36px; height:36px; line-height:36px; font-size:18px; text-align:center;}
-
-.faico a{color:inherit; background-color:#282E39;}
-.faico a:hover{color:#FFFFFF;}
-
-.faicon-dribble:hover{background-color:#EA4C89;}
-.faicon-facebook:hover{background-color:#3B5998;}
-.faicon-google-plus:hover{background-color:#DB4A39;}
-.faicon-linkedin:hover{background-color:#0E76A8;}
-.faicon-twitter:hover{background-color:#00ACEE;}
-.faicon-vk:hover{background-color:#4E658E;}
-
-/* Colours
---------------------------------------------------------------------------------------------------------------- */
-body{color:#A5A6AA; background-color:#282E39;}
-a{color:#97A9BD;}
-a:active, a:focus{background:transparent !important;}/* IE10 + 11 Bugfix - prevents grey background */
-hr, .borderedbox{border-color:#D7D7D7;}
-label span{color:#FF0000; background-color:inherit;}
-input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
-
-.overlay{color:#FFFFFF; background-color:inherit;}
-.overlay::after{color:inherit; background-color:rgba(40,46,57,.7);/* #282E39 */}
-.overlay.light::after{background-color:rgba(151,169,189,.7);/* #97A9BD */}
-
-.gradient{color:#474747; background:linear-gradient(to bottom, #F4F4F4 55%, #FFFFFF 50%, #FFFFFF 100%);}/* Overlap dark to make a hard transition */
-@media screen and (max-width:750px){/* Only the colours height has been changed */
-	.gradient{background:linear-gradient(to bottom, #F4F4F4 24%, #FFFFFF 19%, #FFFFFF 100%);}
-}
-
-.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#97A9BD; border-color:#97A9BD;}
-.btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
-
-.imgover:hover::before{background-color:rgba(151,169,189,.5);/* #97A9BD */}
-.imgover, .imgover:hover::after{color:#FFFFFF;}
-
-.logoname a{color:#FFFFFF;}
-.logoname::first-letter, .logoname span{color:#97BDAB;}
-
 
 /* Rows */
-.row1{color:#FFFFFF; background-color:#000000;position: fixed;z-index: 100;}
+.row1{color:#FFFFFF;background-color: #553c8b}
 .row2{color:#474747; background-color:#F4F4F4;}
 .row3{color:#474747; background-color:#FFFFFF;}
 .row4{color:#A5A6AA; background-color:#000000;}
-.row5, .row5 a{color:#A5A6AA; background-color:#282E39;}
+.row5, .row5 a{color:#A5A6AA; background-color:#553c8b;}
 .coloured{color:#FFFFFF; background-color:#97A9BD;}
-
-
-/* Header */
-#header #logo a{color:inherit;}
-
-
-/* Page Intro */
-#pageintro{color:#FFFFFF;}
 
 
 /* Content Area */
@@ -279,11 +184,6 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 #ctdetails input{color:#474747; background-color:#FFFFFF;}
 #ctdetails button{color:#FFFFFF; background-color:#97A9BD;}
 #ctdetails button:hover{color:inherit; background-color:transparent; border-color:inherit;}
-
-
-/* Footer */
-#footer .heading{color:#FFFFFF;}
-#footer hr, #footer .borderedbox, #footer .linklist li{border-color:rgba(255,255,255,.1);}
 
 
 /* Navigation */
@@ -347,8 +247,6 @@ table a, #comments a{background-color:inherit;}
 	#comments input[type="reset"]{margin-top:10px;}
 	.pagination li{display:inline-block; margin:0 5px 5px 0;}
 
-	#footer{}
-
 	#copyright{}
 	#copyright p:first-of-type{margin-bottom:10px;}
 
@@ -377,10 +275,6 @@ table a, #comments a{background-color:inherit;}
 
 	#ctdetails figure{margin-bottom:80px;}/* Gives good separation between the two elements */
 
-	#footer{padding-bottom:50px;}/* Not needed - just looks better */
-	#footer .latestimg > li, #footer .latestimg > li:nth-last-child(-n+3){display:inline-block; float:none; width:auto; margin:0 5% 5% 0;}
-	#footer .latestimg > li:last-child{margin-bottom:0;}
-	#footer .latestimg > li img{width:auto;}
 }
 
 @media screen and (min-width:451px) and (max-width:900px){
