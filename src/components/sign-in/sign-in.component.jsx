@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
 
 import FormInput from '../form-input/form-input.component';
@@ -37,7 +38,7 @@ class SignIn extends React.Component {
     const { googleSignInStart } = this.props;
     return (
       <div>
-        <div>I already have an account</div>
+        <h1 className='heading'>I already have an account</h1>
         <span>Sign in with your email and password</span>
 
         <form onSubmit={this.handleSubmit}>
@@ -57,15 +58,19 @@ class SignIn extends React.Component {
             label='password'
             required
           />
-          <div>
-            <CustomButton type='submit'> Sign in </CustomButton>
-            <CustomButton
-              type='button'
-              onClick={googleSignInStart}
-              isGoogleSignIn
-            >
-              Sign in with Google
-            </CustomButton>
+          <div className='signInButtons'>
+            <div>
+              <CustomButton type='submit'> Sign in </CustomButton>
+            </div>
+            <div>
+              <CustomButton
+                type='button'
+                onClick={googleSignInStart}
+                isGoogleSignIn
+              >
+                Sign in with Google
+              </CustomButton>
+            </div>
           </div>
         </form>
       </div>

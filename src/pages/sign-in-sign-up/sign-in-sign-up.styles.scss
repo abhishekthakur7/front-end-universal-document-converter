@@ -3,5 +3,17 @@
     display: flex;
     justify-content: space-between;
     margin: 30px auto;
+    margin-top: 9%;
   }
   
+  @media (min-width: 900px) and (max-width: 1080px) {
+    .sign-in-and-sign-up {
+      margin-top: 15%;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .sign-in-and-sign-up {
+      margin-top: 18%;
+    }
+  }
