@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-@import url("fontawesome-free/css/fontawesome-all.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 @import url("framework.css");
 
@@ -106,27 +106,11 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 #mainav ul ul{visibility:hidden; opacity:0;}
 #mainav ul li:hover > ul{visibility:visible; opacity:1;}
 
-#mainav form{display:none; width:100%; margin:0; padding:0;}
-#mainav form select, #mainav form select option{display:block; cursor:pointer; outline:none;}
-#mainav form select{width:100%; padding:5px; border:none;}
-#mainav form select option{margin:5px; padding:0; border:none;}
-
-/* Breadcrumb */
-#breadcrumb{padding:150px 0 30px;}
-#breadcrumb ul{margin:0; padding:0; list-style:none; text-transform:uppercase;}
-#breadcrumb li{display:inline-block; margin:0 6px 0 0; padding:0;}
-#breadcrumb li a{display:block; position:relative; margin:0; padding:0 12px 0 0; font-size:12px;}
-#breadcrumb li a::after{top:4px; right:0; content:"\f0da";}
-#breadcrumb li:last-child a{margin:0; padding:0;}
-#breadcrumb li:last-child a::after{display:none;}
-#breadcrumb .heading{margin:0; font-size:2rem;}
-
 
 /* Rows */
 .row1{color:#FFFFFF;background-color: #553c8b}
-.row2{color:#474747; background-color:#F4F4F4;}
-.row3{color:#474747; background-color:#FFFFFF;}
-.row4{color:#A5A6AA; background-color:#000000;}
+.row2{color:#474747;}
+.row3{color:#474747;}
 .row5, .row5 a{color:#A5A6AA; background-color:#553c8b;}
 .coloured{color:#FFFFFF; background-color:#97A9BD;}
 
@@ -165,7 +149,6 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 
 /* Contact Details */
-#ctdetails {margin-top: 9%; }
 #ctdetails figure > ul li{color:inherit; background-color:#FFFFFF;}
 #ctdetails figure > ul li:hover a{color:#FFFFFF;}
 #ctdetails figure > ul li:hover, #ctdetails figure > ul li a i{color:#FFFFFF; background-color:#97A9BD;}/* Default */
