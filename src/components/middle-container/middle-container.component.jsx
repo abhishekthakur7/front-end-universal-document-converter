@@ -3,7 +3,7 @@ import React from 'react';
 import './middle-container.styles.scss';
 
 const MiddleContainer = () => (
-    <div className="bgded overlay image">
+    <div className="bgded overlay">
         <div id="pageintro" className="hoc clear">
             <article>
                 <h3 className="mainHeading">Universal document converter</h3>

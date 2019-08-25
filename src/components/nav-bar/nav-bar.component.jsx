@@ -46,7 +46,7 @@ class NavBar extends React.Component{
                   </NavLink>
               </div>
               <div>
-                <i className="fa fa-bars" id="breadCrumb"  onClick={this.handleClick}></i>
+                <i className="fa fa-bars fa-2x" id="breadCrumb"  onClick={this.handleClick}></i>
               </div>
             </div>
           </header>

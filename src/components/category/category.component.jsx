@@ -1,7 +1,6 @@
 import React from 'react';
 import './category.styles.scss';
 import ModalWrapper from '../modal-wrapper/modal-wrapper.component';
-import CustomButton from '../custom-button/custom-button.component';
 import Upload from '../upload/upload.component';
 
 class Category extends React.Component {
@@ -31,10 +30,10 @@ class Category extends React.Component {
                     <p>{description}</p>
                 </article>
                 <ModalWrapper showModal={this.state.showModal}  handleCloseModal = {this.handleCloseModal}>
-                    <div>
-                        <CustomButton onClick={this.handleCloseModal} className="closeButton">Close</CustomButton>
-                    </div>
                     <div className="Card">
+                        <div className='closeButton'>
+                            <i onClick={this.handleCloseModal} className="fa fa-times fa-lg" aria-hidden="true"></i>
+                        </div>
                         <Upload />
                     </div>
                 </ModalWrapper>

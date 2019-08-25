@@ -17,7 +17,7 @@
 #pageintro article, #pageintro article p{display:block; max-width:75%; margin:0 auto; text-align:center;}
 #pageintro article p{max-width:65%; line-height:2rem; margin-top: -8px}
 #pageintro .heading{margin-bottom:20px; font-size:3.5rem;}
-#pageintro footer{margin-top:80px;}
+#pageintro footer{margin-top:35px;}
 
 
 /* Content Area
@@ -108,7 +108,7 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 
 /* Rows */
-.row1{color:#FFFFFF;background-color: #553c8b}
+.row1{color:#FFFFFF;background-color: #b83b5e}
 .row2{color:#474747;}
 .row3{color:#474747;}
 .row5, .row5 a{color:#A5A6AA; background-color:#553c8b;}

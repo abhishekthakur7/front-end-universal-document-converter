@@ -1,9 +1,22 @@
 @charset "utf-8";
 
 html{overflow-y:scroll; overflow-x:hidden;}
-html, body{margin:0; padding:0; font-size:14px; line-height:1.6em;}
+html, body{
+    min-width: 300px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;}
 
 *, *::before, *::after{box-sizing:border-box;outline: none!important;}
+
+*{
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
 .bold{font-weight:bold;}
 .center{text-align:center;}
@@ -22,7 +35,6 @@ html, body{margin:0; padding:0; font-size:14px; line-height:1.6em;}
 .borderedbox{border:1px solid;}
 .overlay{position:relative; z-index:1;}
 .overlay::after{display:block; position:absolute; top:0; left:0; width:100%; height:100%; content:""; z-index:-1;}
-.bgded{background-position:top center; background-repeat:no-repeat; background-size:cover;}
 .circle{border-radius:50%; background-clip:padding-box;}
 
 .logoname{margin:0; padding:0; font-size:1.8rem; font-variant:small-caps;}
@@ -69,7 +81,11 @@ label{margin-bottom:5px;}
 
 /* Generalise
 --------------------------------------------------------------------------------------------------------------- */
-h1, h2, h3, h4, h5, h6, .heading{margin:0 0 20px 0; font-size:1.4rem; line-height:normal; font-weight:normal; text-transform:capitalize;}
+h1, h2, h3, h4, h5, h6, .heading{margin:0 0 20px 0; font-size:1.4rem; line-height:normal; text-transform:capitalize;}
+h1{font-family: 'Montserrat', sans-serif;}
+h2, h3 {font-family: 'Montserrat', sans-serif; font-size: 1.3rem; color: #66bfbf;}
+p{color: inherit;font-size: large;font-family: inherit;}
+  
 .heading.nospace{margin-bottom:0;}
 
 address{font-style:normal; font-weight:normal;}

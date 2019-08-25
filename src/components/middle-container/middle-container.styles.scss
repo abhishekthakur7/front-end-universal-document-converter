@@ -1,14 +1,18 @@
-//background image styles
-.image {
-	background-image: url('../../static/images/background/01.png');
-}
-
 .mainHeading {
-  color: white;
   margin-bottom: 20px;
   font-size: 3.5rem;
+  font-weight: 600;
+  text-shadow: 4px 2px 0px rgba(0,0,0,0.15);
+  color: #b83b5e;
 }
 
-.mainHeading + p {
-  color: #fff;
+.button {
+  background-color: #6a2c70;
+  padding: 13px;
+  border-radius: 4px;
+  color: white;
+
+  &:hover {
+    background-color: #7d4383;
+  }
 }

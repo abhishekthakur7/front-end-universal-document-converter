@@ -22,7 +22,7 @@
   }
   
   .topnav a.active {
-    background-color: #4CAF50;
+    background-color: #000;
     color: white;
   }
   
@@ -37,7 +37,8 @@
     }
     .topnav #breadCrumb {
         display: block;
-        padding-top: 1rem;
+        margin-top: 22%;
+        text-shadow: 0 2px 0 rgba(0,0,0,0.15);
       }
     .topnav a:not(:first-child) {float: left;display: none;}
   }

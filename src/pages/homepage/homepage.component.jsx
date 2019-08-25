@@ -4,7 +4,7 @@ import MiddleContainer from '../../components/middle-container/middle-container.
 import Categories from '../../components/categories/categories.component';
 
 const HomePage = () => (
-    <div>
+    <div style = {{'background': 'linear-gradient(to right, #f08a5d, #f9ed69)'}}>
         <MiddleContainer />
         <Categories />
     </div> 
